@@ -12,12 +12,13 @@ const mutations = {
     } else{
       state.stocks.push({
         id: stockId,
-        quantify: quantity
+        quantity: Number(quantity)
       });
     }
     state.funds -= stockPrice * quantity;
   },
   'SELL_STOCK'(state, {stockId, quantity, stockPrice}){
+    quantity = Number(quantity);
     const record = state.stocks.find(el => el.id == stockId);
     if(record.quantity > quantity){
       record.quantity -= quantity;
@@ -29,6 +30,9 @@ const mutations = {
 };
 
 const actions = {
+  buyStock: ({ commit }, order) => {
+    commit('BUY_STOCK', order);
+  },
   sellStock({ commit }, order){
     commit('SELL_STOCK', order);
   }
@@ -40,7 +44,7 @@ const getters = {
       const record = getters.stocks.find(el => el.id == stock.id);
       return {
         id: stock.id,
-        quantify: stock.quantity,
+        quantity: stock.quantity,
         name: record.name,
         price: record.price
       }

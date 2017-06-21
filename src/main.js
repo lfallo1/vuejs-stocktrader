@@ -3,6 +3,7 @@ import App from './App.vue'
 import Router from 'vue-router'
 import { routes } from './routes.js'
 import store from './store/store.js'
+import filters from './filters.js'
 
 Vue.use(Router);
 

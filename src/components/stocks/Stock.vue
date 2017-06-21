@@ -3,7 +3,7 @@
     <div class="panel panel-success">
       <div class="panel-heading">
         <div class="panel-title">
-          {{stock.name}} <small>Price: {{stock.price}}</small>
+          {{stock.name}} <small>Price: {{stock.price | currency}}</small>
         </div>
       </div>
       <div class="panel-body">
@@ -15,7 +15,11 @@
             placeholder="Quantify" />
         </div>
         <div class="pull-right">
-          <button :disabled="!validQuantity" class="btn btn-success" @click="buyStock">Buy</button>
+          <button
+            :disabled="!validQuantity"
+            class="btn"
+            :class="{'btn-success' : validQuantity, 'btn-danger': !validQuantity && quantity > 0}"
+            @click="buyStock">{{validQuantity || quantity == 0 ? 'Buy' : 'Invalid Quantity'}}</button>
         </div>
       </div>
     </div>

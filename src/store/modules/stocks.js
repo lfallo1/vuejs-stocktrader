@@ -9,14 +9,13 @@ const mutations = {
     state.stocks = stocks;
   },
   'RANDOM_STOCKS' (state){
-
+    state.stocks.forEach(s=>{
+      s.price += Math.random() * (s.price*.35) - (s.price * .25 / 2)
+    })
   }
 };
 
 const actions = {
-  buyStock: ({ commit }, order) => {
-    commit('BUY_STOCK', order);
-  },
   initStocks: ({ commit }) => {
     commit('SET_STOCKS', stocks);
   },
