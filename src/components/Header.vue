@@ -12,7 +12,7 @@
           <router-link to="/stocks" activeClass="active" tag="li"><a>Stocks</a></router-link>
           <router-link to="/portfolio" activeClass="active" tag="li"><a>Portfolio</a></router-link>
         </ul>
-        <strong class="navbar-text navbar-right">{{funds | currency}}</strong>
+        <strong class="navbar-text navbar-right">{{user.name}}'s funds: {{funds | currency}}</strong>
         <ul class="nav navbar-nav navbar-right">
           <li><a href="" @click.prevent="endDay">End Day</a></li>
           <li class="dropdown" :class="{open: showDropdown}">
@@ -35,7 +35,7 @@
 
 <script>
 
-  import { mapActions } from 'vuex'
+  import { mapActions, mapGetters } from 'vuex'
 
   export default {
     methods: {
@@ -47,9 +47,7 @@
       }
     },
     computed: {
-      funds(){
-        return this.$store.getters.funds
-      }
+      ...mapGetters(['user', 'funds'])
     },
     data(){
       return{
