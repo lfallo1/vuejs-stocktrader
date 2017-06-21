@@ -1,5 +1,6 @@
 <template>
   <div class="container">
+    <div v-if="myFunds" class="alert alert-warning text-center">Funds: {{myFunds | currency}}</div>
     <app-stock :stock="stock" v-for="stock in stocks"></app-stock>
   </div>
 </template>
@@ -12,7 +13,8 @@
   export default {
     computed: {
       ...mapGetters({
-        stocks: 'stockPortfolio'
+        stocks: 'stockPortfolio',
+        myFunds: 'funds'
       })
     },
     components: {

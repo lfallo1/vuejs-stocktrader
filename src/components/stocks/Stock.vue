@@ -52,7 +52,7 @@
     },
     computed: {
       validQuantity() {
-        return !isNaN(this.quantity) && this.quantity > 0;
+        return ((this.quantity * this.stock.price) < this.$store.getters.funds) && !isNaN(this.quantity) && this.quantity > 0;
       }
     }
   }
